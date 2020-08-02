@@ -1,4 +1,4 @@
-# ig-dv
+# Instagram - Data Viewer
 
 ## Project setup
 ```

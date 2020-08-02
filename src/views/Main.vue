@@ -65,9 +65,6 @@ export default class Main extends Vue {
       const result = await zip.loadAsync(partOne);
       const files = await result.files;
 
-      console.log('Loading files and contents.');
-      console.log(this.$store.state);
-
       // Go through the files as they resolve
       for (const [key, value] of Object.entries(files)) {
         // Load those items in vuex

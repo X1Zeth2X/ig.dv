@@ -2,6 +2,12 @@
 
 More information to come soon.
 
+## TODO
+
+- Extract the ZIP data in the location and load them when needed.
+- Vuex persistence for the data.
+- Media collection reader.
+
 ## Project setup
 ```
 yarn install

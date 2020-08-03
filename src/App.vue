@@ -8,5 +8,9 @@
 #app {
   font-family: 'Barlow', sans-serif;
   padding: 2em;
+
+  .styled-card {
+    border-radius: .8em;
+  }
 }
 </style>

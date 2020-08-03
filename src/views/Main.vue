@@ -10,7 +10,7 @@
       Please drop the <code>part_1.zip</code> file.
     </p>
 
-    <b-field>
+    <b-field v-show="zipFiles.length === 0">
       <b-upload drag-drop v-model="zipFiles" multiple>
         <section class="section">
           <div class="content has-text-centered">
@@ -22,28 +22,34 @@
         </section>
       </b-upload>
     </b-field>
-    <br>
 
-    <router-link to="categories">
-      Categories
-    </router-link>
+    (Please note that this is still in early development and is still buggy.)
+
+    <router-link to="/categories">Categories</router-link>
+    <br>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import { mapState } from 'vuex';
 
 // Setup JSZip
 import JSZip from 'jszip';
+import router from '../router';
 const zip = new JSZip();
 
 @Component
 export default class Main extends Vue {
   private zipFiles: File[] = [];
+  private isLoading = false;
 
   @Watch('zipFiles')
   onFileUpload = async () => {
+    const loader = this.$buefy.loading.open({
+      isFullPage: true,
+      canCancel: false
+    });
+
     if (this.zipFiles.length === 0) {
       this.$buefy.toast.open({
         message: 'Failed to load zip file!',
@@ -53,30 +59,37 @@ export default class Main extends Vue {
 
     const partOne: File = this.zipFiles[0];
 
-    // if (partOne.name !== 'part_1.zip') {
-    //   this.$buefy.toast.open({
-    //     message: 'File name is invalid.',
-    //     type: 'is-danger'
-    //   });
-    // }
-
-    // Extract the zip file.
+    // Read the zip file.
     try {
       const result = await zip.loadAsync(partOne);
       const files = await result.files;
 
       // Go through the files as they resolve
       for (const [key, value] of Object.entries(files)) {
-        // Load those items in vuex
-        this.$store.state
-        console.log(await value.async('text'));
+        // Separate the fileName from their format
+        const fileName: string = key.slice(0, -5);
+        const data: JSON = JSON.parse(await value.async('text'));
+
+        await this.$store.dispatch('setInstagramData', {
+          key: fileName,
+          value: data
+        });
       }
+
+      setTimeout(() => {
+        router.push({ name: 'Categories' });
+        loader.close();
+      }, 500);
 
     } catch (error) {
       this.$buefy.toast.open({
         message: `Something went wrong while extracting.\n${error}`,
         type: 'is-danger'
       });
+
+      setTimeout(() => {
+        loader.close();
+      }, 500);
     }
   }
 }

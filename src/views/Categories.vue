@@ -1,10 +1,9 @@
 <template>
   <div class="container" id="categories">
-    <p class="is-size-1 has-text-weight-bold">Categories</p>
-
-    <p class="is-size-4">
-      Pick a category to view more information.
-    </p>
+    <PageHeader
+      :title="'Category'"
+      :desc="'Pick a category to view more information.'"
+    />
 
     <div class="columns cards">
       <div
@@ -26,11 +25,13 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 import CategoryCard from '@/components/CategoryCard.vue';
+import PageHeader from '@/components/PageHeader.vue';
 import { CategoryInfo } from '@/types/category';
 
 @Component({
   components: {
-    CategoryCard
+    CategoryCard,
+    PageHeader
   }
 })
 export default class Categories extends Vue {
@@ -40,7 +41,7 @@ export default class Categories extends Vue {
       icon: 'crosshairs-gps',
       image: 'map.svg',
       description: 'Test',
-      route: '/'
+      route: '/accountHistory'
     },
     {
       title: 'Comments',

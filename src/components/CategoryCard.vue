@@ -17,11 +17,13 @@
     </div>
 
     <footer class="card-footer">
-      <router-link
-        class="card-footer-item"
-        :to="data.route"
-        v-text="'View'"
-      />
+      <b-button
+        class="is-info card-footer-item"
+        expanded
+        @click="viewMore"
+      >
+        View
+      </b-button>
     </footer>
   </div>
 </div>
@@ -34,5 +36,13 @@ import { CategoryInfo } from '@/types/category';
 @Component
 export default class CategoryCard extends Vue {
   @Prop() data!: CategoryInfo;
+  private IGData = null;
+
+  viewMore = () => {
+    const path = this.$route.path + this.data.route;
+    this.$router.push({
+      name: 'Account History'
+    });
+  }
 }
 </script>

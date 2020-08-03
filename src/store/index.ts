@@ -2,6 +2,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import createPersistedState from 'vuex-persistedstate';
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -27,16 +29,20 @@ export default new Vuex.Store({
     uploaded_contacts: [],
 
     // Initialize empty feed data
-    feed: {}
+    currentFeed: []
   },
 
   mutations: {
-    setInstagramData (state, { key, value }: {
+    setInstagramData(state, { key, value }: {
       key: keyof typeof state;
       value: any;
     }) {
       state[key] = value;
     },
+
+    setFeed(state, items) {
+      state.currentFeed = items;
+    }
   },
 
   actions: {
@@ -46,8 +52,17 @@ export default new Vuex.Store({
         value: payload.value
       });
     },
+
+    setFeed(context, items) {
+      context.commit('setFeed', items);
+    },
   },
 
-  modules: {
-  }
+  getters: {
+    currentFeed(state) {
+      return state.currentFeed;
+    }
+  },
+
+  plugins: [createPersistedState()]
 })

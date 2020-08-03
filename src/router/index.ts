@@ -13,8 +13,13 @@ Vue.use(VueRouter)
   {
     path: '/categories',
     name: 'Categories',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/Categories.vue')
+    component: () => import(/* webpackChunkName: "categories" */ '@/views/Categories.vue'),
   },
+  {
+    path: '/accountHistory',
+    name: 'Account History',
+    component: () => import(/* webpackChunkName: "accountHistory" */ '@/views/Data/AccountHistory.vue'),
+  }
 ]
 
 const router = new VueRouter({

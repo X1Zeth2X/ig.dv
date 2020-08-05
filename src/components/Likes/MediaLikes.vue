@@ -1,6 +1,6 @@
 <template>
 <div id="mediaLikes">
-  <div class="card" v-for="like in currentFeed" :key="like[0]">
+  <div class="card" v-for="(like, index) in currentFeed" :key="index">
     <div class="card-content">
       You liked <span class="has-text-weight-bold" v-text="like[1]"/>'s
       post on {{ like[0] }}.

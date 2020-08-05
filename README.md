@@ -1,6 +1,6 @@
 # Instagram - Data Viewer
 
-More information to come soon.
+<img src="IG-dv.png" alt="Banner image"/>
 
 ## Assets
 
@@ -10,31 +10,13 @@ I may not need to credit them but their resources are really good.
 ## TODO
 
 - Media collection reader.
+- Use Mixins to reduce code redundancy.
+- Implement Unit Tests.
 
-## Project setup
-```
-yarn install
-```
+## Setup
+The setup is pretty similar to those of Vue-cli projects.
+You can read more about it [here](https://cli.vuejs.org/).
 
-### Compiles and hot-reloads for development
-```
-yarn electron:serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+`$ yarn install` Install package dependencies
+`$ yarn serve` To run in development mode w/Hot reload.
+`$ yarn build <options>` See [electron-build](https://www.electron.build/) for options.

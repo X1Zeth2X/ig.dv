@@ -1,12 +1,12 @@
 <template>
-<div id="header">
+<div id="header" style="margin-bottom: 1em;">
   <div v-show="showBack">
     <b-button
       @click="goBack"
       class="is-primary"
       icon-left="chevron-left"
     >
-      Go Back
+      Go to {{ this.backRoute ? 'Main' : 'Categories' }}
     </b-button>
 
     <div class="right">
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <hr>
+  <hr v-show="showBack">
   <p class="is-size-1 has-text-weight-bold">{{ title }}</p>
   <p class="is-size-4">{{ desc }}</p>
 </div>
@@ -29,9 +29,12 @@ export default class PageHeader extends Vue {
   @Prop() title!: string;
   @Prop() desc!: string;
   @Prop() showBack!: boolean;
+  @Prop() backRoute!: string | null;
 
   goBack = () => {
-    this.$router.go(-1);
+    this.backRoute ?
+    this.$router.push({ name: this.backRoute }) :
+    this.$router.push({ name: 'Categories' });
   }
 }
 </script>

@@ -18,7 +18,7 @@ export default new Vuex.Store({
     seen_content: {},
     devices: {},
     likes: {},
-    fundRaisers: [],
+    fundraisers: [],
     profile: {},
     guides: [],
     messages: [],
@@ -61,6 +61,26 @@ export default new Vuex.Store({
   getters: {
     currentFeed(state) {
       return state.currentFeed;
+    },
+
+    informationAboutYou(state) {
+      return state.information_about_you;
+    },
+
+    profileData(state) {
+      return state.profile;
+    },
+
+    accountHistory(state) {
+      return state.account_history;
+    },
+
+    comments(state) {
+      return state.comments;
+    },
+
+    likes(state) {
+      return state.likes;
     }
   },
 

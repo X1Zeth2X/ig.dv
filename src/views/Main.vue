@@ -10,7 +10,7 @@
       Please drop the <code>part_1.zip</code> file.
     </p>
 
-    <div v-if="zipFiles.length === 0">
+    <div v-if="zipFiles.length === 0" class="text-center">
       <b-field>
         <b-upload drag-drop v-model="zipFiles" multiple>
           <section class="section">
@@ -25,16 +25,17 @@
       </b-field>
 
       <b-button
-        icon-right="instagram"
+        icon-right="image"
         class="is-primary"
-        style="margin-right: 2px;"
-      >Challenge</b-button>
+        @click="$router.push('/about')"
+        style="margin-right: .5em;"
+      >Media Viewer</b-button>
 
       <b-button
         icon-right="information"
-        class="is-info"
+        class="is-light"
         @click="$router.push('/about')"
-      >About</b-button>
+      >About IG.dv</b-button>
     </div>
 
 
@@ -107,8 +108,9 @@ export default class Main extends Vue {
 <style lang="scss" scoped>
 #main {
   max-width: 70%;
+
   .header {
-    margin-top: 1.6em;
+    margin-top: 1em;
     font-size: 4em;
     font-weight: 900;
   }

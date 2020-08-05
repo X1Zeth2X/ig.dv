@@ -8,7 +8,7 @@
 
   <div class="card styled-card">
     <div class="card-content">
-      <div class="columns is-mobile">
+      <div class="columns">
         <div class="column is-2 has-text-centered">
           <figure class="image">
             <img :src="profileData.profile_pic_url" alt="profile-pic"/>
@@ -87,7 +87,15 @@
               </span>
             </li>
           </ul>
+
+          <img 
+            :src="require('@/assets/place.svg')"
+            alt="Place image"
+            width="300px"
+            style="margin-top: 2em;"
+          >
         </div> <!-- Column end -->
+
       </div>
     </div>
   </div>

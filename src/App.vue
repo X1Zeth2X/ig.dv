@@ -12,5 +12,10 @@
   .styled-card {
     border-radius: .8em;
   }
+
+  .bottom {
+    text-align: center;
+    margin: auto;
+  }
 }
 </style>

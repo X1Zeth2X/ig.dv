@@ -1,6 +1,6 @@
 # Instagram - Data Viewer
 
-<img src="IG-dv.png" alt="Banner image"/>
+<img src="IGdv.png" alt="Banner image"/>
 
 ## Assets
 

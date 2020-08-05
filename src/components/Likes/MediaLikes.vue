@@ -3,7 +3,13 @@
   <div class="card" v-for="(like, index) in currentFeed" :key="index">
     <div class="card-content">
       You liked <span class="has-text-weight-bold" v-text="like[1]"/>'s
-      post on {{ like[0] }}.
+      post.
+
+      <b-tag
+        class="is-grey-light"
+        size="is-medium"
+        style="float: right;"
+      >{{ likedOn(like[0]) }}</b-tag>
     </div>
   </div>
 
@@ -29,6 +35,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { Getter, Action } from 'vuex-class';
+import readableDate from '@/utils/date';
 
 @Component
 export default class MediaLikes extends Vue {
@@ -40,6 +47,10 @@ export default class MediaLikes extends Vue {
 
   created() {
     this.loadMediaLikes();
+  }
+
+  private likedOn = (date: string): string => {
+    return readableDate(date);
   }
 
   private loadMediaLikes = async () => {

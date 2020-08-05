@@ -79,6 +79,8 @@ export default class Main extends Vue {
       const result = await zip.loadAsync(partOne);
       const files = await result.files;
 
+      // @TODO: Check if the files are actually part_1.zip files.
+
       // Go through the files as they resolve
       for (const [key, value] of Object.entries(files)) {
         // Separate the fileName from their format

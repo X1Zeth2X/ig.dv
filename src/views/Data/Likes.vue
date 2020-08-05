@@ -6,25 +6,21 @@
     :showBack="true"
   />
 
-
-
   <div class="card styled-card">
     <div class="card-content">
       <!-- Tabs -->
       <b-tabs type="is-toggle" expanded v-model="currentTab">
         <b-tab-item
-          label="Media Likes"
+          label="Media like activity."
           icon="post"
         />
         <b-tab-item
-          label="Comment likes"
+          label="Comment like activity."
           icon="comment-text-outline"
         />
       </b-tabs>
 
       <component :is="currentTab === 0 ? 'MediaLikes' : 'CommentLikes'" />
-
-
     </div>
   </div>
 

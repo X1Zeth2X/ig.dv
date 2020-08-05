@@ -97,7 +97,8 @@ export default class AccountHistory extends Vue {
 
   async created() {
     // Load the account history information
-    await this.$store.dispatch('setFeed', this.accountHistory.login_history.slice(0, 10));
+    const data = this.accountHistory.login_history.slice(0, 10);
+    await this.setFeed(data);
   }
 
   removeUnderscore = (title: string) => {
@@ -106,16 +107,14 @@ export default class AccountHistory extends Vue {
   }
 
   showMore = async () => {
-    const data = this.$store.state.account_history.login_history;
+    const accountHistory = this.$store.getters.accountHistory.login_history;
     const currentFeed: object[] = this.$store.getters.currentFeed;
+    const moreData = accountHistory.slice(
+      currentFeed.length,
+      currentFeed.length + 10
+    )
 
-    await this.$store.dispatch(
-      'setFeed',
-      currentFeed.concat(data.slice(
-        currentFeed.length,
-        currentFeed.length + 10
-      ))
-    );
+    await this.setFeed(currentFeed.concat(moreData));
   }
 
   goTop = () => {

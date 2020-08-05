@@ -10,8 +10,12 @@ I may not need to credit them but their resources are really good.
 ## TODO
 
 - Media collection reader.
-- Use Mixins to reduce code redundancy.
+- Use Vue Mixins to reduce code redundancy.
 - Implement Unit Tests.
+- Smart tools (Future features).
+  - Find out what you were doing at a certain time (activity tracking).
+  - Check where you were when doing these activities.
+  - Location & Activity filtering.
 
 ## Setup
 The setup is pretty similar to those of Vue-cli projects.

@@ -13,15 +13,11 @@
         <span class="has-text-weight-bold"> IP Address: </span>
         {{ data.ip_address }}
 
-        <b-button 
-          outlined
-          rounded
-          class="is-info"
-          icon-right="magnify"
-          size="is-small"
-          style="float: right;"
-          @click="viewIP(data.ip_address)"
-        >View on LookIP</b-button>
+        <span style="float: right;">
+          <b-tag>
+            Viewable online.
+          </b-tag>
+        </span>
       </li>
 
       <li>
@@ -33,7 +29,7 @@
       <li>
         <b-icon icon="calendar"/>
         <span class="has-text-weight-bold"> Timestamp: </span>
-        {{ data.timestamp }}
+        {{ timestamp }}
       </li>
 
       <li>
@@ -54,10 +50,15 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import readableDate from '@/utils/date';
 
 @Component
 export default class LoginHistory extends Vue {
-  @Prop() data!: object;
+  @Prop() data!: any;
+
+  get timestamp(): string {
+    return readableDate(this.data.timestamp);
+  }
 
   viewIP = (IP: string) => {
     window.open(`https://www.lookip.net/ip/${ IP }`, '_blank', 'nodeIntegration=no');

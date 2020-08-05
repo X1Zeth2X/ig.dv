@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { CategoryInfo } from '@/types/category';
+import { CategoryInfo } from '@/utils/category';
 
 @Component
 export default class CategoryCard extends Vue {

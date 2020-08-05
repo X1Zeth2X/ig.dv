@@ -46,7 +46,7 @@
               <p>
                 <b-icon icon="calendar-plus" />
                 You joined on
-                {{ profileData.date_joined }}
+                {{ dateJoined }}
               </p>
 
               <p>
@@ -107,6 +107,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 
 import PageHeader from '@/components/PageHeader.vue';
+import readableDate from '@/utils/date';
 
 @Component({
   components: {
@@ -120,10 +121,13 @@ export default class Profile extends Vue {
   private informationAboutYou!: object;
 
   @Getter
-  private profileData!: object;
+  private profileData!: {
+    date_joined: string;
+  };
 
-  created() {
-    // Get profile information
+  get dateJoined(): string {
+    const dateJoined = this.profileData.date_joined;
+    return readableDate(dateJoined);
   }
 
   viewProfile = (username: string) => {

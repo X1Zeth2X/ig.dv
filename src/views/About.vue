@@ -29,14 +29,14 @@
       </h3>
       <p class="is-size-5">
         The short answer is that
-        this tool simply allows you to view the data collected in a user friendly manner.
+        this tool simply allows you to view the data collected (by Instagram) in a user friendly manner.
       </p>
 
       <br />
       <p class="is-size-5">
         If you're unaware, Instagram allows you to download the data they've mined and collected
         about you which are contained in <code>zip</code> file formats. When you extract those zip
-        files, those data are in <code>json</code> file format in which you can read but typically
+        files, those data are in <code>json</code> file format in which you can hardly read but typically
         those are for machines. 
       </p>
     </div>
@@ -45,7 +45,7 @@
   <div class="columns is-variable is-5" style="margin-top: 2em">
     <div class="column">
       <h3 class="is-size-3 has-text-weight-bold">
-        Why did I make it?
+        Why did I make IG.dv?
       </h3>
 
       <b-notification

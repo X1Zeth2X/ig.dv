@@ -38,7 +38,7 @@
             class="is-grey-light"
             size="is-medium"
             style="float: right;"
-          >{{ comment[0] }}</b-tag>
+          >{{ commentedOn(comment[0]) }}</b-tag>
         </div>
       </div>
 
@@ -68,6 +68,7 @@ import { Vue, Component } from 'vue-property-decorator';
 
 import PageHeader from '@/components/PageHeader.vue';
 import { Getter, Action } from 'vuex-class';
+import readableDate from '@/utils/date';
 
 @Component({
   components: {
@@ -86,8 +87,12 @@ export default class Comments extends Vue {
   @Action
   private setFeed!: Function;
 
+  private commentedOn = (date: string): string => {
+    return readableDate(date);
+  }
+
   async created() {
-    await this.$store.dispatch('setFeed', this.comments.media_comments.slice(0, 10));
+    await this.setFeed(this.comments.media_comments.slice(0, 10));
   }
 
   showMore = async () => {

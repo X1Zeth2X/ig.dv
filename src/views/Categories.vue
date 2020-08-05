@@ -38,7 +38,7 @@ import { Vue, Component } from 'vue-property-decorator';
 
 import CategoryCard from '@/components/CategoryCard.vue';
 import PageHeader from '@/components/PageHeader.vue';
-import { CategoryInfo } from '@/types/category';
+import { CategoryInfo } from '@/utils/category';
 
 @Component({
   components: {

@@ -9,7 +9,7 @@
       rounded
       class="is-warning"
       @click="goToMain"
-    >Upload different data.</b-button>
+    >Go to Main (Resets Data)</b-button>
 
     <div class="columns cards">
       <div

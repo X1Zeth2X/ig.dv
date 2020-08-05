@@ -1,6 +1,6 @@
 <template>
 <div id="category-card">
-  <div class="card">
+  <div class="card styled-card">
     <div class="card-header">
       <p class="card-header-title">{{ data.title }}</p>
       <p class="card-header-icon">
@@ -8,23 +8,25 @@
       </p>
     </div>
 
-    <div class="card-image">
-      <img :src="require('@/assets/' + data.image)" :alt="data.image">
+    <div class="card-image bottom" style="padding: 1em;">
+      <img :src="require('@/assets/' + data.image)" :alt="data.image"
+        style="height: 200px;"
+      >
     </div>
 
     <div class="card-content">
       {{ data.description }}
-    </div>
 
-    <footer class="card-footer">
       <b-button
-        class="is-info card-footer-item"
+        style="margin-top: 1em;"
+        class="is-info"
         expanded
+        rounded
         @click="viewMore"
       >
         View
       </b-button>
-    </footer>
+    </div>
   </div>
 </div>
 </template>
@@ -40,9 +42,7 @@ export default class CategoryCard extends Vue {
 
   viewMore = () => {
     const path = this.$route.path + this.data.route;
-    this.$router.push({
-      name: 'Account History'
-    });
+    this.$router.push(this.data.route);
   }
 }
 </script>

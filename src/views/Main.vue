@@ -1,7 +1,7 @@
 <template>
   <div class="container has-text-centered" id="main">
     <p class="header">
-      IG.dv
+      IG.dv 📸
     </p>
 
     <p class="subheader">
@@ -10,22 +10,42 @@
       Please drop the <code>part_1.zip</code> file.
     </p>
 
-    <b-field v-show="zipFiles.length === 0">
-      <b-upload drag-drop v-model="zipFiles" multiple>
-        <section class="section">
-          <div class="content has-text-centered">
-            <p>
-              <b-icon icon="upload" size="is-large"></b-icon>
-            </p>
-            <p>Drop your file here or click to load</p>
-          </div>
-        </section>
-      </b-upload>
-    </b-field>
+    <div v-if="zipFiles.length === 0">
+      <b-field>
+        <b-upload drag-drop v-model="zipFiles" multiple>
+          <section class="section">
+            <div class="content has-text-centered">
+              <p>
+                <b-icon icon="upload" size="is-large"></b-icon>
+              </p>
+              <p>Drop your file here or click to load</p>
+            </div>
+          </section>
+        </b-upload>
+      </b-field>
 
-    (Please note that this is still in early development and is still buggy.)
+      <b-button
+        icon-right="instagram"
+        class="is-primary"
+        style="margin-right: 2px;"
+      >Challenge</b-button>
 
-    <router-link to="/categories">Categories</router-link>
+      <b-button
+        icon-right="information"
+        class="is-info"
+        @click="$router.push('/about')"
+      >About</b-button>
+    </div>
+
+
+    <div class="loading" v-else>
+      <img :src="require('@/assets/upload.svg')" alt="Loading Image">
+      <b-progress
+        type="is-info"
+        size="is-medium"
+      />
+      Please note that this is still in early development and is still buggy.
+    </div>
     <br>
   </div>
 </template>
@@ -41,15 +61,9 @@ const zip = new JSZip();
 @Component
 export default class Main extends Vue {
   private zipFiles: File[] = [];
-  private isLoading = false;
 
   @Watch('zipFiles')
   onFileUpload = async () => {
-    const loader = this.$buefy.loading.open({
-      isFullPage: true,
-      canCancel: false
-    });
-
     if (this.zipFiles.length === 0) {
       this.$buefy.toast.open({
         message: 'Failed to load zip file!',
@@ -78,7 +92,6 @@ export default class Main extends Vue {
 
       setTimeout(() => {
         router.push({ name: 'Categories' });
-        loader.close();
       }, 500);
 
     } catch (error) {
@@ -86,10 +99,6 @@ export default class Main extends Vue {
         message: `Something went wrong while extracting.\n${error}`,
         type: 'is-danger'
       });
-
-      setTimeout(() => {
-        loader.close();
-      }, 500);
     }
   }
 }
@@ -107,6 +116,12 @@ export default class Main extends Vue {
   .subheader {
     font-size: 1.4em;
     margin-bottom: 2em;
+  }
+
+  .loading {
+    max-width: 25rem;
+    margin: 0 auto;
+    align-content: center;
   }
 }
 </style>

@@ -19,7 +19,7 @@
     <div class="card-content">
       <b-taglist
         attached
-        v-for="[info, value] in Object.entries(registrationInfo)"
+        v-for="[info, value] in Object.entries(accountHistory.registration_info)"
         :key="info"
       >
         <b-tag type="is-primary" class="title-info is-size-6">{{ removeUnderscore(info) }}</b-tag>
@@ -29,11 +29,11 @@
 
   </div>
 
-  <div class="card styled-card" id="loginHistory">
+  <div class="card styled-card">
     <div class="card-header">
       <div class="card-header-title">
         Login History
-        <span class="has-text-weight-normal">: {{ loginEntries }} entries, showing: {{ currentFeed.length }}.</span>
+        <span class="has-text-weight-normal">: {{ accountHistory.login_history.length }} entries, showing: {{ currentFeed.length }}.</span>
       </div>
 
       <div class="card-header-icon">
@@ -47,12 +47,22 @@
       <div v-for="(entry, index) in currentFeed" :key="index"
       ><LoginHistory :data="entry"/></div>
 
-      <b-button
-        outlined
-        class="is-primary more has-text-centered"
-        @click="showMore"
-      >Show more</b-button>
+      <hr />
+      <div class="bottom">
+        <a @click="goTop"
+          class="has-text-weight-bold"
+        >Go back to Top</a>
 
+        <br>
+        <b-button
+          style="margin-top: 15px;"
+          class="is-primary"
+          @click="showMore"
+          rounded
+          size="is-large"
+          icon-right="chevron-down"
+        />
+      </div>
     </div>
 
   </div>
@@ -73,22 +83,21 @@ import LoginHistory from '@/components/AccountHistory/LoginHistory.vue';
   }
 })
 export default class AccountHistory extends Vue {
-  private registrationInfo: object = {};
-  private loginEntries = 0;
-
-  @Getter('currentFeed')
+  @Getter
   private currentFeed!: object[]
 
-  @Action('setFeed')
+  @Getter
+  private accountHistory!: {
+    login_history: object[];
+    registration_info: object;
+  };
+
+  @Action
   private setFeed!: Function;
 
-  async mounted() {
+  async created() {
     // Load the account history information
-    const data = this.$store.state.account_history;
-    this.loginEntries = data.login_history.length;
-    this.registrationInfo = data.registration_info;
-
-    await this.$store.dispatch('setFeed', data.login_history.slice(0, 10));
+    await this.$store.dispatch('setFeed', this.accountHistory.login_history.slice(0, 10));
   }
 
   removeUnderscore = (title: string) => {
@@ -108,12 +117,16 @@ export default class AccountHistory extends Vue {
       ))
     );
   }
+
+  goTop = () => {
+    window.scrollTo(0, 0);
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 #registration {
-  margin-top: 1em;
+  margin-bottom: 1em;
 
   .title-info {
     text-transform: capitalize;
@@ -125,14 +138,6 @@ export default class AccountHistory extends Vue {
 
   .tag-content {
     font-size: 2em;
-  }
-}
-
-#loginHistory {
-  margin-top: 1em;
-
-  .entry {
-    margin-top: .5em;
   }
 }
 </style>

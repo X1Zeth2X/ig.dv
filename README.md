@@ -2,10 +2,13 @@
 
 More information to come soon.
 
+## Assets
+
+The following SVG assets were from [unDraw](https://undraw.co/).
+I may not need to credit them but their resources are really good.
+
 ## TODO
 
-- Extract the ZIP data in the location and load them when needed.
-- Vuex persistence for the data.
 - Media collection reader.
 
 ## Project setup

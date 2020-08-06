@@ -73,7 +73,15 @@ export default class Main extends Vue {
     return getSVGPath('upload.svg');
   }
 
-  onFileUpload = async () => {
+  private resetState = () => {
+    localStorage.removeItem('vuex');
+    this.$store.commit('resetState');
+  }
+
+  private onFileUpload = async () => {
+    // Clear the current state management
+    await this.resetState();
+
     if (this.zipFiles.length === 0) {
       this.$buefy.toast.open({
         message: 'Failed to load zip file!',
@@ -111,7 +119,7 @@ export default class Main extends Vue {
 
     } catch (error) {
       this.$buefy.toast.open({
-        message: `Something went wrong while extracting.\n${error}`,
+        message: 'Something went wrong while reading the zip, make sure it\'s the part 1.',
         type: 'is-danger'
       });
     }

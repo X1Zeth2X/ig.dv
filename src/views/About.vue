@@ -8,7 +8,7 @@
   <!-- Content -->
   <div class="columns is-variable is-3">
     <div class="column">
-      <img :src="require('@/assets/camera.svg')" alt="">
+      <img :src="SVGImage('camera.svg')" alt="Camera SVG">
     </div>
     <div class="column">
       <h3 class="is-size-3 has-text-weight-bold">
@@ -73,7 +73,7 @@
     </div>
 
     <div class="column ">
-      <img :src="require('@/assets/process.svg')" alt="">
+      <img :src="SVGImage('process.svg')" alt="Process SVG">
     </div>
   </div>
 </div>
@@ -83,13 +83,18 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 import PageHeader from '@/components/PageHeader.vue';
+import { getSVGPath } from '@/utils/view';
 
 @Component({
   components: {
     PageHeader
   }
 })
-export default class About extends Vue {}
+export default class About extends Vue {
+  SVGImage(name: string): string | null {
+    return getSVGPath(name);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -75,6 +75,7 @@ import { Vue, Component } from 'vue-property-decorator';
 
 import PageHeader from '@/components/PageHeader.vue';
 import readableDate from '@/utils/date';
+import { viewUser } from '@/utils/view';
 
 interface ConnectionInfo {
   label: string;
@@ -125,7 +126,7 @@ export default class Connections extends Vue {
   ];
 
   viewProfile = (username: string) => {
-    window.open(`https://instagram.com/${ username }`, '_blank');
+    viewUser(username);
   }
 }
 </script>

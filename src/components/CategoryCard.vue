@@ -9,7 +9,7 @@
     </div>
 
     <div class="card-image bottom" style="padding: 1em;">
-      <img :src="require('@/assets/' + data.image)" :alt="data.image"
+      <img :src="SVGPath" :alt="data.image"
         style="height: 200px;"
       >
     </div>
@@ -33,12 +33,18 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+
 import { CategoryInfo } from '@/utils/category';
+import { getSVGPath } from '@/utils/view';
 
 @Component
 export default class CategoryCard extends Vue {
   @Prop() data!: CategoryInfo;
   private IGData = null;
+
+  get SVGPath(): string | null {
+    return getSVGPath(this.data.image);
+  }
 
   viewMore = () => {
     this.$router.push(this.data.route);

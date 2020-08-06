@@ -40,7 +40,7 @@
 
 
     <div class="loading" v-else>
-      <img :src="require('@/assets/upload.svg')" alt="Loading Image">
+      <img :src="SVGPath" :alt="'Upload image'">
       <b-progress
         type="is-info"
         size="is-medium"
@@ -54,10 +54,12 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-// Setup JSZip
-import JSZip from 'jszip';
 import router from '../router';
 import { Action } from 'vuex-class';
+import { getSVGPath } from '@/utils/view';
+
+// Setup JSZip
+import JSZip from 'jszip';
 const zip = new JSZip();
 
 @Component
@@ -66,6 +68,10 @@ export default class Main extends Vue {
 
   @Action
   private setInstagramData!: Function;
+
+  get SVGPath(): string | null {
+    return getSVGPath('upload.svg');
+  }
 
   onFileUpload = async () => {
     if (this.zipFiles.length === 0) {

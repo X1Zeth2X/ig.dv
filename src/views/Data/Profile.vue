@@ -27,7 +27,7 @@
           <div class="media-right">
             <p class="is-size-4 has-text-weight-bold">{{ profileData.name }}</p>
             <p class="subtitle">
-              <a @click="viewProfile(profileData.username)">
+              <a @click="viewUser(profileData.username)">
                 @{{ profileData.username }}
               </a>
             </p>
@@ -108,6 +108,7 @@ import { Getter } from 'vuex-class';
 
 import PageHeader from '@/components/PageHeader.vue';
 import readableDate from '@/utils/date';
+import { viewUser, viewIP } from '@/utils/view';
 
 @Component({
   components: {
@@ -130,9 +131,7 @@ export default class Profile extends Vue {
     return readableDate(dateJoined);
   }
 
-  viewProfile = (username: string) => {
-    window.open(`https://instagram.com/${ username }`, '_blank');
-  }
+  private viewUser = viewUser;
 }
 </script>
 

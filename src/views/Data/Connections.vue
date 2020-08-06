@@ -50,7 +50,7 @@
         >
           {{ detail.message }}:
           <a
-            @click="viewProfile(username)"
+            @click="viewUser(username)"
             v-text="`@${username}`" 
             class="has-text-weight-bold"
           />
@@ -86,20 +86,11 @@ interface ConnectionInfo {
 @Component({
   components: {
     PageHeader
-  }
+  },
 })
 export default class Connections extends Vue {
   private showDetail = false;
   private detail: object | null = null;
-
-  showDetails(detail: object) {
-    this.detail = detail;
-    this.showDetail = true;
-  }
-
-  timestamp = (date: string): string => {
-    return readableDate(date);
-  }
 
   private connections: ConnectionInfo[] = [
     {
@@ -125,8 +116,15 @@ export default class Connections extends Vue {
     }
   ];
 
-  viewProfile = (username: string) => {
-    viewUser(username);
+  showDetails(detail: object) {
+    this.detail = detail;
+    this.showDetail = true;
   }
+
+  private timestamp = (date: string): string => {
+    return readableDate(date);
+  }
+
+  private viewUser = viewUser;
 }
 </script>

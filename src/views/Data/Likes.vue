@@ -29,8 +29,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator';
-import { Getter, Action } from 'vuex-class';
+import { Vue, Component } from 'vue-property-decorator';
 
 import PageHeader from '@/components/PageHeader.vue';
 import MediaLikes from '@/components/Likes/MediaLikes.vue';

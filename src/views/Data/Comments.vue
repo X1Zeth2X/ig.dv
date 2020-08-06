@@ -42,8 +42,9 @@
         </div>
       </div>
 
-      <hr />
-      <div class="bottom">
+      <div class="bottom" v-show="currentFeed.length !== comments.media_comments.length">
+        <hr />
+
         <a @click="goTop"
           class="has-text-weight-bold"
         >Go back to Top</a>
@@ -98,14 +99,9 @@ export default class Comments extends Vue {
   showMore = async () => {
     const mediaComments: Array<[]> = this.$store.state.comments.media_comments;
     const currentFeed: Array<[]> = this.$store.getters.currentFeed;
+    const data = mediaComments.slice(currentFeed.length - 1 , currentFeed.length + 10);
 
-    await this.$store.dispatch(
-      'setFeed',
-      currentFeed.concat(mediaComments.slice(
-        currentFeed.length,
-        currentFeed.length + 10
-      ))
-    );
+    await this.setFeed(currentFeed.concat(data));
   }
 
   goTop = () => {

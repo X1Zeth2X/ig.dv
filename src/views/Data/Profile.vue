@@ -25,7 +25,7 @@
 
         <div class="column">
           <div class="media-right">
-            <p class="title">{{ profileData.name }}</p>
+            <p class="is-size-4 has-text-weight-bold">{{ profileData.name }}</p>
             <p class="subtitle">
               <a @click="viewProfile(profileData.username)">
                 @{{ profileData.username }}
@@ -66,19 +66,19 @@
         </div>
 
         <div class="column">
-          <p class="has-text-weight-bold is-size-4">Information about you</p>
+          <h4 class="has-text-weight-bold is-size-4">Information about you</h4>
 
           <ul class="is-size-5">
             <li>
               <b-icon icon="home-city" />
               You live in
               <span has-text-weight-bold>
-                {{ informationAboutYou.primary_location.city_name }}.
+                {{ informationAboutYou[0].primary_location.city_name }}.
               </span>
             </li>
 
             <li 
-              v-for="number in informationAboutYou.inferred_phone_numbers"
+              v-for="number in informationAboutYou[0].inferred_phone_numbers"
               :key="number"
             >
               <b-icon icon="cellphone-iphone" />
@@ -88,12 +88,12 @@
             </li>
           </ul>
 
-          <img 
-            :src="require('@/assets/place.svg')"
-            alt="Place image"
-            width="300px"
-            style="margin-top: 2em;"
-          >
+          <br />
+          <h4 class="has-text-weight-bold is-size-4">Settings</h4>
+          <p class="is-size-5">
+            <b-icon icon="comment-multiple-outline" />
+            Allow comments from {{ informationAboutYou[1].allow_comments_from }}
+          </p>
         </div> <!-- Column end -->
 
       </div>
@@ -118,7 +118,7 @@ export default class Profile extends Vue {
   private picChanges = 0;
 
   @Getter
-  private informationAboutYou!: object;
+  private informationAboutYou!: object[];
 
   @Getter
   private profileData!: {

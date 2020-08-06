@@ -30,6 +30,16 @@
         <CategoryCard :data="category"/>
       </div>
     </div>
+
+    <div class="columns cards">
+      <div
+        class="column" 
+        v-for="category in categories.slice(6, 9)"
+        :key="category.title"
+      >
+        <CategoryCard :data="category"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -82,19 +92,42 @@ export default class Categories extends Vue {
       icon: 'account-group',
       image: 'connections.svg',
       description: 'People you have blocked, followers, and more.',
-      route: '/'
+      route: '/connections'
     },
     {
       title: 'Messages',
       icon: 'inbox-multiple',
       image: 'messages.svg',
       description: 'Your conversations with people and participants.',
-      route: '/'
+      route: '/messages'
+    },
+
+    {
+      title: 'Searches',
+      icon: 'magnify',
+      image: 'searches.svg',
+      description: 'Searches you\'ve made on the application.',
+      route: '/likes'
+    },
+    {
+      title: 'Devices',
+      icon: 'devices',
+      image: 'devices.svg',
+      description: 'People you have blocked, followers, and more.',
+      route: '/connections'
+    },
+    {
+      title: 'Story and Seen activity',
+      icon: 'history',
+      image: 'activity.svg',
+      description: 'Stories and seen content you\'ve interacted with',
+      route: '/messages'
     },
   ];
 
   private goToMain = () => {
     // Remove Vuex saves
+    this.$store.commit('resetState');
     localStorage.removeItem('vuex');
 
     // Go back to main

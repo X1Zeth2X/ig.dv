@@ -47,8 +47,9 @@
       <div v-for="(entry, index) in currentFeed" :key="index"
       ><LoginHistory :data="entry"/></div>
 
-      <hr />
-      <div class="bottom">
+      <div class="bottom" v-show="currentFeed.length !== accountHistory.login_history.length">
+        <hr />
+
         <a @click="goTop"
           class="has-text-weight-bold"
         >Go back to Top</a>
@@ -107,10 +108,10 @@ export default class AccountHistory extends Vue {
   }
 
   showMore = async () => {
-    const accountHistory = this.$store.getters.accountHistory.login_history;
+    const loginHistory = this.$store.getters.accountHistory.login_history;
     const currentFeed: object[] = this.$store.getters.currentFeed;
-    const moreData = accountHistory.slice(
-      currentFeed.length,
+    const moreData = loginHistory.slice(
+      currentFeed.length - 1,
       currentFeed.length + 10
     )
 

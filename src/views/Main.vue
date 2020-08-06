@@ -12,7 +12,7 @@
 
     <div v-if="zipFiles.length === 0" class="text-center">
       <b-field>
-        <b-upload drag-drop v-model="zipFiles" multiple>
+        <b-upload drag-drop v-model="zipFiles" multiple @input="onFileUpload">
           <section class="section">
             <div class="content has-text-centered">
               <p>
@@ -52,18 +52,21 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 
 // Setup JSZip
 import JSZip from 'jszip';
 import router from '../router';
+import { Action } from 'vuex-class';
 const zip = new JSZip();
 
 @Component
 export default class Main extends Vue {
   private zipFiles: File[] = [];
 
-  @Watch('zipFiles')
+  @Action
+  private setInstagramData!: Function;
+
   onFileUpload = async () => {
     if (this.zipFiles.length === 0) {
       this.$buefy.toast.open({
@@ -85,12 +88,15 @@ export default class Main extends Vue {
       for (const [key, value] of Object.entries(files)) {
         // Separate the fileName from their format
         const fileName: string = key.slice(0, -5);
-        const data: JSON = JSON.parse(await value.async('text'));
+        const data = JSON.parse(await value.async('text'));
 
-        await this.$store.dispatch('setInstagramData', {
-          key: fileName,
-          value: data
-        });
+        // Don't set data if there is nothing to set.
+        if (data[0] !== 'You have no data in this section') {
+          await this.setInstagramData({
+            key: fileName,
+            value: data,
+          });
+        }
       }
 
       setTimeout(() => {

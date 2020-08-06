@@ -1,13 +1,12 @@
 /* eslint-disable */
 import Vue from 'vue'
 import Vuex from 'vuex'
-
 import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
+const getDefaultState = () => {
+  return {
     // Initialize empty states for Instagram..
     searches: [],
     shopping: [],
@@ -30,7 +29,11 @@ export default new Vuex.Store({
 
     // Initialize empty feed data
     currentFeed: []
-  },
+  }
+}
+
+export default new Vuex.Store({
+  state: getDefaultState(),
 
   mutations: {
     setInstagramData(state, { key, value }: {
@@ -42,6 +45,10 @@ export default new Vuex.Store({
 
     setFeed(state, items) {
       state.currentFeed = items;
+    },
+
+    resetState(state) {
+      Object.assign(state, getDefaultState());
     }
   },
 
@@ -64,7 +71,10 @@ export default new Vuex.Store({
     },
 
     informationAboutYou(state) {
-      return state.information_about_you;
+      return [
+        state.information_about_you,
+        state.settings
+      ];
     },
 
     profileData(state) {
@@ -81,6 +91,14 @@ export default new Vuex.Store({
 
     likes(state) {
       return state.likes;
+    },
+
+    DMs(state) {
+      return state.messages;
+    },
+
+    connections(state) {
+      return state.connections;
     }
   },
 

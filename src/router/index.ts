@@ -39,12 +39,23 @@ const routes: Array<RouteConfig> = [
   {
     path: '/likes',
     name: 'Likes',
-    component: () => import(/* webpackChunkName: "profile" */ '@/views/Data/Likes.vue'),
-  }
+    component: () => import(/* webpackChunkName: "likes" */ '@/views/Data/Likes.vue'),
+  },
+  {
+    path: '/connections',
+    name: 'Connections',
+    component: () => import(/* webpackChunkName: "connections" */ '@/views/Data/Connections.vue'),
+  },
+  {
+    path: '/messages',
+    name: 'Messages',
+    component: () => import(/* webpackChunkName: "messages" */ '@/views/Data/Messages.vue'),
+  },
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'hash'
 })
 
 export default router

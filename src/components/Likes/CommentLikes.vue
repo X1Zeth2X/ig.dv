@@ -13,8 +13,9 @@
     </div>
   </div>
 
-  <hr />
-  <div class="bottom">
+  <div class="bottom" v-show="currentFeed.length !== likes.comment_likes.length">
+    <hr />
+
     <a @click="goTop"
       class="has-text-weight-bold"
     >Go back to Top</a>
@@ -42,6 +43,9 @@ export default class MediaLikes extends Vue {
   @Getter
   private currentFeed!: Array<[]>;
 
+  @Getter
+  private likes!: Array<[]>;
+
   @Action
   private setFeed!: Function;
 
@@ -55,7 +59,7 @@ export default class MediaLikes extends Vue {
 
   private loadCommentLikes = async () => {
     const commentLikes: Array<[]> = this.$store.getters.likes.comment_likes;
-    await this.$store.dispatch('setFeed', commentLikes.slice(0, 10));
+    await this.setFeed(commentLikes.slice(0, 10));
   }
 
   showMore = async () => {
@@ -63,7 +67,7 @@ export default class MediaLikes extends Vue {
     // 0 - Media, 1 - Comment
     const currentFeed: Array<[]> = this.$store.getters.currentFeed;
     const commentLikes: Array<[]> = this.$store.getters.likes.comment_likes;
-    const data: Array<[]> = commentLikes.slice(currentFeed.length, currentFeed.length + 10);
+    const data: Array<[]> = commentLikes.slice(currentFeed.length - 1, currentFeed.length + 10);
 
     await this.setFeed(commentLikes.concat(data));
   }

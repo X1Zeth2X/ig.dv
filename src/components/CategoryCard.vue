@@ -41,7 +41,6 @@ export default class CategoryCard extends Vue {
   private IGData = null;
 
   viewMore = () => {
-    const path = this.$route.path + this.data.route;
     this.$router.push(this.data.route);
   }
 }

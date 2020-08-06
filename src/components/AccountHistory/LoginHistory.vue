@@ -54,14 +54,12 @@ import readableDate from '@/utils/date';
 
 @Component
 export default class LoginHistory extends Vue {
-  @Prop() data!: any;
+  @Prop() data!: {
+    timestamp: string;
+  };
 
   get timestamp(): string {
     return readableDate(this.data.timestamp);
-  }
-
-  viewIP = (IP: string) => {
-    window.open(`https://www.lookip.net/ip/${ IP }`, '_blank', 'nodeIntegration=no');
   }
 }
 </script>

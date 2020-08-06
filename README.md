@@ -22,5 +22,7 @@ The setup is pretty similar to those of Vue-cli projects.
 You can read more about it [here](https://cli.vuejs.org/).
 
 `$ yarn install` Install package dependencies
+
 `$ yarn serve` To run in development mode w/Hot reload.
+
 `$ yarn build <options>` See [electron-build](https://www.electron.build/) for options.

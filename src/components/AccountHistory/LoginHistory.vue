@@ -14,9 +14,14 @@
         {{ data.ip_address }}
 
         <span style="float: right;">
-          <b-tag>
-            Viewable online.
-          </b-tag>
+          <b-button
+            outlined
+            size="is-small"
+            class="is-info"
+            rounded
+            icon-right="magnify"
+            @click="viewIP(data.ip_address)"
+          >View on WhoIS</b-button>
         </span>
       </li>
 
@@ -51,6 +56,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import readableDate from '@/utils/date';
+import { viewIP } from '@/utils/view';
 
 @Component
 export default class LoginHistory extends Vue {
@@ -61,5 +67,7 @@ export default class LoginHistory extends Vue {
   get timestamp(): string {
     return readableDate(this.data.timestamp);
   }
+
+  private viewIP = viewIP;
 }
 </script>

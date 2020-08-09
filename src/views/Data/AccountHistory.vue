@@ -47,7 +47,7 @@
       <div v-for="(entry, index) in currentFeed" :key="index"
       ><LoginHistory :data="entry"/></div>
 
-      <div class="bottom" v-show="currentFeed.length !== accountHistory.login_history.length">
+      <div class="bottom" >
         <hr />
 
         <a @click="goTop"
@@ -58,10 +58,12 @@
         <b-button
           style="margin-top: 15px;"
           class="is-primary"
-          @click="showMore"
           rounded
           size="is-large"
           icon-right="chevron-down"
+
+          @click="showMore"
+          v-show="currentFeed.length !== accountHistory.login_history.length"
         />
       </div>
     </div>
@@ -111,7 +113,7 @@ export default class AccountHistory extends Vue {
     const loginHistory = this.$store.getters.accountHistory.login_history;
     const currentFeed: object[] = this.$store.getters.currentFeed;
     const moreData = loginHistory.slice(
-      currentFeed.length - 1,
+      currentFeed.length,
       currentFeed.length + 10
     )
 

@@ -34,15 +34,27 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <h4 class="is-size-4">I should add a show more.. but I was lazy, so apologies for the (possible) lag.</h4>
 
   <b-modal
+    full-screen
     :active.sync="showDetail" width="75%"
     v-if="detail !== null"
   >
     <div class="card">
+      <div class="card-header">
+        <div class="card-header-title">
+          Viewing more...
+        </div>
+
+        <div class="card-header-icon">
+          (esc to leave)
+        </div>
+      </div>
+
       <div class="card-content is-size-5">
         <div 
           v-for="[username, date] in Object.entries(detail.value)"

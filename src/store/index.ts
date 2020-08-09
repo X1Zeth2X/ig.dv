@@ -99,6 +99,14 @@ export default new Vuex.Store({
 
     connections(state) {
       return state.connections;
+    },
+
+    searches(state) {
+      return state.searches;
+    },
+
+    devices(state) {
+      return state.devices;
     }
   },
 

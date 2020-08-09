@@ -7,16 +7,6 @@
   />
 
   <div class="card styled-card">
-    <div class="card-header">
-      <div class="card-header-title">
-        Comments
-      </div>
-
-      <div class="card-header-icon">
-        <b-icon icon="comment-quote" />
-      </div>
-    </div>
-
     <div class="card-content">
 
       <div class="is-size-5" style="margin-bottom: .5em;">
@@ -88,9 +78,7 @@ export default class Comments extends Vue {
   @Action
   private setFeed!: Function;
 
-  private commentedOn = (date: string): string => {
-    return readableDate(date);
-  }
+  private commentedOn = readableDate;
 
   async created() {
     await this.setFeed(this.comments.media_comments.slice(0, 10));
@@ -99,7 +87,7 @@ export default class Comments extends Vue {
   showMore = async () => {
     const mediaComments: Array<[]> = this.$store.state.comments.media_comments;
     const currentFeed: Array<[]> = this.$store.getters.currentFeed;
-    const data = mediaComments.slice(currentFeed.length - 1 , currentFeed.length + 10);
+    const data = mediaComments.slice(currentFeed.length , currentFeed.length + 10);
 
     await this.setFeed(currentFeed.concat(data));
   }

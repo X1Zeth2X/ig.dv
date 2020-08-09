@@ -51,6 +51,16 @@ const routes: Array<RouteConfig> = [
     name: 'Messages',
     component: () => import(/* webpackChunkName: "messages" */ '@/views/Data/Messages.vue'),
   },
+  {
+    path: '/searches',
+    name: 'Searches',
+    component: () => import(/* webpackChunkName: "searches" */ '@/views/Data/Searches.vue'),
+  },
+  {
+    path: '/devices',
+    name: 'devices',
+    component: () => import(/* webpackChunkName: "devices" */ '@/views/Data/Devices.vue'),
+  },
 ]
 
 const router = new VueRouter({

@@ -108,7 +108,7 @@ import { Getter } from 'vuex-class';
 
 import PageHeader from '@/components/PageHeader.vue';
 import readableDate from '@/utils/date';
-import { viewUser, viewIP } from '@/utils/view';
+import { viewUser } from '@/utils/view';
 
 @Component({
   components: {

@@ -23,8 +23,6 @@
       <component :is="currentTab === 0 ? 'MediaLikes' : 'CommentLikes'" />
     </div>
   </div>
-
-
 </div>
 </template>
 

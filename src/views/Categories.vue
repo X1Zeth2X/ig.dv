@@ -113,7 +113,7 @@ export default class Categories extends Vue {
       title: 'Devices',
       icon: 'devices',
       image: 'devices.svg',
-      description: 'People you have blocked, followers, and more.',
+      description: 'Cameras and devices that has been tied to your account.',
       route: '/connections'
     },
     {

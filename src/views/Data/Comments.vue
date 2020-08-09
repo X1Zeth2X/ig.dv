@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="bottom" v-show="currentFeed.length !== comments.media_comments.length">
+      <div class="bottom">
         <hr />
 
         <a @click="goTop"
@@ -43,10 +43,12 @@
         <b-button
           style="margin-top: 15px;"
           class="is-primary"
-          @click="showMore"
           rounded
           size="is-large"
           icon-right="chevron-down"
+
+          @click="showMore"
+          v-show="currentFeed.length !== comments.media_comments.length"
         />
       </div>
     </div>

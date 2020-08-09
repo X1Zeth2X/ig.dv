@@ -11,6 +11,16 @@
     </p>
 
     <div v-if="zipFiles.length === 0" class="text-center">
+      <b-button
+        style="margin-bottom: 1em;"
+        rounded
+        class="is-success"
+        v-if="preloaded"
+        @click="$router.push('/categories')"
+      >
+        Data pre-loaded, click here to view.
+      </b-button>
+
       <b-field>
         <b-upload drag-drop v-model="zipFiles" multiple @input="onFileUpload">
           <section class="section">
@@ -65,9 +75,18 @@ const zip = new JSZip();
 @Component
 export default class Main extends Vue {
   private zipFiles: File[] = [];
+  private preloaded = false;
 
   @Action
   private setInstagramData!: Function;
+
+  created() {
+    const currentFeed = this.$store.getters.currentFeed;
+
+    if (currentFeed.length !== 0) {
+      this.preloaded = true;
+    }
+  }
 
   get SVGPath(): string | null {
     return getSVGPath('upload.svg');

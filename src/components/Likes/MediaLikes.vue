@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="bottom" v-show="currentFeed.length !== likes.media_likes.length">
+  <div class="bottom">
     <hr />
 
     <a @click="goTop"
@@ -24,10 +24,12 @@
     <b-button
       style="margin-top: 15px;"
       class="is-primary"
-      @click="showMore"
       rounded
       size="is-large"
       icon-right="chevron-down"
+
+      @click="showMore"
+      v-show="currentFeed.length !== likes.media_likes.length"
     />
   </div>
 </div>
@@ -67,7 +69,7 @@ export default class MediaLikes extends Vue {
     // 0 - Media, 1 - Comment
     const currentFeed: Array<[]> = this.$store.getters.currentFeed;
     const mediaLikes: Array<[]> = this.$store.getters.likes.media_likes;
-    const data: Array<[]> = mediaLikes.slice(currentFeed.length - 1, currentFeed.length + 10);
+    const data: Array<[]> = mediaLikes.slice(currentFeed.length, currentFeed.length + 10);
 
     await this.setFeed(mediaLikes.concat(data));
   }

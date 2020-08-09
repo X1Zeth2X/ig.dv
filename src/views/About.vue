@@ -59,13 +59,13 @@
 
       <p class="is-size-5">
         To raise awareness about people's personal information, to make them aware about what
-        kind of information is collected about them by Big Tech companies, to educate people
+        kind of information is collected about them by Big Tech companies, and to educate people
         about the importance of data.
       </p>
 
       <br />
       <p class="is-size-5">
-        Also to explore different technologies such as Electron and see how it went with Vue
+        Also to explore different technologies such as Electron and see how it goes with Vue
         and Buefy (Bulma), which is pretty neat but I honestly haven't delve enough to point
         out what it's lacking and what it's good at, so far the experience has been really 
         smooth.

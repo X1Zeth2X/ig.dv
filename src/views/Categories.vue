@@ -9,7 +9,7 @@
       rounded
       class="is-warning"
       @click="goToMain"
-    >Go to Main (Resets Data)</b-button>
+    >Go to Main (Resets Current Data)</b-button>
 
     <div class="columns cards">
       <div
@@ -107,14 +107,14 @@ export default class Categories extends Vue {
       icon: 'magnify',
       image: 'searches.svg',
       description: 'Searches you\'ve made on the application.',
-      route: '/likes'
+      route: '/searches'
     },
     {
       title: 'Devices',
       icon: 'devices',
       image: 'devices.svg',
       description: 'Cameras and devices that has been tied to your account.',
-      route: '/connections'
+      route: '/devices'
     },
     {
       title: 'Story and Seen activity',

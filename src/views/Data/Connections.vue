@@ -45,14 +45,13 @@
     v-if="detail !== null"
   >
     <div class="card">
-      <div class="card-header">
-        <div class="card-header-title">
-          Viewing more...
-        </div>
-
-        <div class="card-header-icon">
-          (esc to leave)
-        </div>
+      <div class="esc">
+        <span class="has-text-weight-bold">
+          Viewing more 
+        </span>
+        <br />
+        (Press Esc to leave)
+        <hr />
       </div>
 
       <div class="card-content is-size-5">
@@ -140,3 +139,11 @@ export default class Connections extends Vue {
   private viewUser = viewUser;
 }
 </script>
+
+<style lang="scss" scoped>
+.esc {
+  padding-top: 1em;
+  text-align: center;
+  font-size: 1.2rem;
+}
+</style>

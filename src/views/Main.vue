@@ -28,7 +28,7 @@
               <p>
                 <b-icon icon="upload" size="is-large"></b-icon>
               </p>
-              <p>Drop your file here or click to load</p>
+              <p>Drop your file here or click to load.</p>
             </div>
           </section>
         </b-upload>
@@ -37,7 +37,7 @@
       <b-button
         icon-right="image"
         class="is-primary"
-        @click="$router.push('/about')"
+        @click="$router.push('/media')"
         style="margin-right: .5em;"
       >Media Viewer</b-button>
 

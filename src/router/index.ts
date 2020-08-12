@@ -17,6 +17,12 @@ const routes: Array<RouteConfig> = [
     component: About
   },
   {
+    path: '/media',
+    name: 'Media',
+    component: () => import(/* webpackChunkName: "devices" */ '@/views/Media.vue'),
+  },
+
+  {
     path: '/categories',
     name: 'Categories',
     component: () => import(/* webpackChunkName: "categories" */ '@/views/Categories.vue'),

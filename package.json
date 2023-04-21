@@ -16,7 +16,7 @@
     "@types/node": "12.12.21",
     "buefy": "^0.8.20",
     "core-js": "^3.6.5",
-    "jszip": "^3.5.0",
+    "jszip": "^3.8.0",
     "moment": "^2.27.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
